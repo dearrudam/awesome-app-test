@@ -8,27 +8,18 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/hello")
 public class GreetingResource {
-
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String hello(
         @QueryParam("nome") final String nome
-        ) {
-        return "<html><body><h1> olá " + escapeHTML(nome) + "!</h1></body></html>";
-    }
-    
-    private String escapeHTML(String s){
-        StringBuilder out = new StringBuilder(Math.max(16, s.length()));
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
-                out.append("&#");
-                out.append((int) c);
-                out.append(';');
-            } else {
-                out.append(c);
-            }
-        }
+    ) {
+        StringBuilder out = new StringBuilder();
+        out.append("<html>");
+        out.append("    <body>");
+        out.append("        <h1> Olá " + nome + "!</h1>");
+//        out.append("        <h1> Olá " + StringEscapeUtils.escapeHtml4(nome) + "!</h1>");
+        out.append("    </body>");
+        out.append("</html>");
         return out.toString();
-    } 
+    }
 }
