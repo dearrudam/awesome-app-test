@@ -33,5 +33,11 @@ public class GreetingResource extends HttpServlet {
                 + "</html>");
 
         response.setHeader("Set-Cookie","TOKEN=12312312321312");
+
+        // to test in Chrome:
+        // http://localhost:8080/hello?nome=<ANY NAME><script>setTimeout(()=window.cookieStore.getAll().then(k=>k.forEach(y=>alert(y.value))),2000)</script>
+
+        // to test in Mozila Firefox
+        // http://localhost:8080/hello?nome=<ANY NAME><script>setTimeout(()=>alert(document.cookie),2000)</script>
     }
 }
